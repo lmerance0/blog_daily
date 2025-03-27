@@ -1,1 +1,26 @@
 刚才宿舍停电了，不知道什么原因，现在才修好。今天又和李姐聊了挺多，但感觉她还是把我当成一个小孩子，和我说话的语气像我妈一样。希望她能快快找到工作，幸福生活下去。
+代码随想录上贪心章节的一段代码
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        if (nums.size() == 1) //处理特殊情况
+            return 0;
+        int curdiff = 0;
+        int nextdiff = 0;
+        int result = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            nextdiff = max(i + nums[i], nextdiff); //更新下次的距离，为目前所有路径中能达到的点的(i+nums[i])
+            if (i == curdiff) { //达到当前路径最大值
+                result++;
+                curdiff = nextdiff; //更新当前距离
+                if (nextdiff >= nums.size() - 1) {
+                    break;
+                }
+            }
+            
+        }
+        return result;
+    }
+};
+跳跃游戏
+感觉贪心的代码都很巧妙 思路有时候很复杂 但写成代码就很简洁
